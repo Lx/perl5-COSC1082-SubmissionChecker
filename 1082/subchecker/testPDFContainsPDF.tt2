@@ -1,0 +1,16 @@
+<p>
+  You have submitted a file with the extension <tt>.pdf</tt>, but it
+  does not appear to be an actual PDF file.&nbsp;  Instead, it appears
+  to be of type '[% fileType | html_entity %]'.
+</p>
+<ul>
+  <li>
+    If you have prepared this file using the School's computers, please
+    review the section on creating PDF files in the lecture notes.
+  </li>
+  <li>
+    If you have prepared this file at home, consider using
+    <a target="_blank" href="http://pdfforge.org/products/pdfcreator">
+    PDFCreator</a>.
+  </li>
+</ul>

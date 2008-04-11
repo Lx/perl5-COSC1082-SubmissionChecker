@@ -1,0 +1,19 @@
+[%- IF sList.size > 1 %]
+  <p>
+    Your submission contains multiple S files:
+  </p>
+  <ol>
+    [%- FOREACH file IN sList %]
+      <li><tt>[% file | html_entity %]</tt></li>
+    [%- END %]
+  </ol>
+  <p>
+    Only one S file should exist per ASM file, and you should only be
+    submitting one ASM file.
+  </p>
+[%- ELSE %]
+  <p>
+    Your submission contains no S file.&nbsp;  If you have an ASM file,
+    you should also have an S file.
+  </p>
+[%- END %]

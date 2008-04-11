@@ -1,0 +1,14 @@
+<p>
+  Your submitted file is [% sizeInMB | html_entity %] MB in size.&nbsp;
+  WebLearn sometimes has difficulty accepting files this large.
+</p>
+<p>
+  Perhaps your submission contains scans of hand-prepared work.&nbsp;
+  If so, please consider re-scanning your work at a lower quality
+  setting (e.g. 150 DPI) and in greyscale mode if your work does not
+  require colour scanning to understand.
+</p>
+<p>
+  If you have trouble submitting your work to WebLearn, try again from
+  within one of the School's labs.
+</p>

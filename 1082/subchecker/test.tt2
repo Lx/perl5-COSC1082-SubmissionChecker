@@ -1,0 +1,35 @@
+<div
+  class="
+    test
+    [%- SWITCH testStatus %]
+    [%- CASE 'pass' %]
+      passedTest
+    [%- CASE 'warn' %]
+      warnedTest
+    [%- CASE 'fail' %]
+      failedTest
+    [%- END %]
+  "
+>
+  <div class="testHeader">
+    <h3 class="testTitle">[% testTitle | html_entity %]:</h3>
+    <div class="testStatus">
+      [%- SWITCH testStatus %]
+      [%- CASE 'pass' %]
+        Yes
+      [%- CASE 'warn' %]
+        No
+      [%- CASE 'fail' %]
+        No
+      [%- CASE %]
+        Not tested
+      [%- END %]
+    </div>
+    <div class="clear"></div>
+  </div>
+  [%- IF testDetails %]
+    <div class="testDetails">
+      [% testDetails %]
+    </div>
+  [%- END %]
+</div>

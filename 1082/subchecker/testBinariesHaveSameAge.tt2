@@ -1,0 +1,8 @@
+<p>
+  Your LST and S files were created at different times, which means
+  that you did not use the <tt>-L</tt> option when you last assembled
+  your code.&nbsp;  Your LST file could therefore be out of date.
+</p>
+<p>
+  You should build your LST and S files again.
+</p>

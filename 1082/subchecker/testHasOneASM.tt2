@@ -1,0 +1,23 @@
+[%- IF asmList.size > 1 %]
+  <p>
+    Your submission contains multiple ASM files:
+  </p>
+  <ol>
+    [%- FOREACH file IN asmList %]
+      <li><tt>[% file | html_entity %]</tt></li>
+    [%- END %]
+  </ol>
+  <p>
+    You should not be submitting multiple ASM files.&nbsp;  If your
+    final submission contains multiple ASM files, one of them will be
+    selected <em>at random</em> for marking and the others will be
+    deleted.&nbsp;  The one selected for marking may not be the one
+    that would award you the most marks.
+  </p>
+[%- ELSE %]
+  <p>
+    Your submission contains no ASM file.&nbsp;  If you have included
+    your code within your PDF, you still need to provide an ASM file so
+    that we can assemble and test your code.
+  </p>
+[%- END %]

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <link rel="stylesheet" href="http://yallara.cs.rmit.edu.au/~apeters/css/subchecker.css" type="text/css" />
+  <title>COSC1082 online submission checker</title>
+  <script type="text/javascript">
+    function checkSubmit() {
+      if (document.getElementById('fileSelector').value === "") {
+          alert("You must select a file for checking.");
+          return false;
+      }
+      if (!document.getElementById('tickBox').checked) {
+          alert(
+            "This interface will only check your work--it will not "
+            + "submit your work for assessment.  You must still "
+            + "submit your work to WebLearn in order to be graded."
+            + "\n\n"
+            + "You must tick the box on the form to indicate that you "
+            + "understand this."
+          );
+          return false;
+      }
+      return true;
+    }
+  </script>
+</head>
+<body>
+
+<h1 class="pageHeader">COSC1082 online submission checker</h1>
+
+<div style="width: 700px; margin-left: auto; margin-right: auto;">
+  <div class="panel">
+    <h2 class="panelHeader">Important note regarding large submissions</h2>
+    <div class="panelContent">
+
+      <p>
+        The web server sometimes has trouble accepting large
+        submissions.&nbsp;  An error like "<em>The connection was reset
+        while the page was loading</em>" is usually such an indication.
+      </p>
+      <p>
+        If this affects you, reduce the size of your submission (by
+        scanning your hand-prepared work at a lower quality) and/or
+        upload it from within one of the School's labs.
+      </p>
+
+    </div>
+  </div>
+  <div class="panel">
+    <h2 class="panelHeader">Check your submission</h2>
+    <div class="panelContent">
+      <form action="" method="post" enctype="multipart/form-data"
+      onsubmit="return checkSubmit()">
+      [%- IF formErrors.size > 0 %]
+        <p><strong>Please address the following errors:</strong></p>
+        <ul>
+          [%- FOREACH error IN formErrors %]
+            <li>[% error | html_entity %]</li>
+          [%- END %]
+        </ul>
+      [%- END %]
+      <div id="submissionPanel">
+        <input
+          type="file"
+          name="[% submissionFieldName | html_entity %]"
+          class="fileSelector"
+          id="fileSelector"
+          size="40"
+        />
+      </div>
+      <div id="agreePanel">
+        <table class="checkbox">
+          <tr>
+            <td class="left">
+              <input
+                type="checkbox"
+                name="[% tickBoxName | html_entity %]"
+                id="tickBox"
+                value="1"
+                [%- IF tickBoxIsTicked %]
+                  checked="checked"
+                [%- END %]
+              />
+            </td>
+            <td class="right">
+              <label for="tickBox">
+                I understand that this interface will only
+                <em>check</em> my work <em>without submitting</em> it
+                for assessment, and that I must still submit my work to
+                WebLearn in order to be graded.
+              </label>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="buttonBar">
+        <input type="submit" class="button" value="Check submission" />
+      </div>
+      </form>
+    </div>
+  </div>
+  [%- IF testResults.size > 0 %]
+    <div class="panel">
+      <h2 class="panelHeader">Test results</h2>
+      <div class="panelContent">
+        <p>
+          Green items are good.&nbsp;  Red items highlight issues that
+          you need to address in order to avoid losing marks.&nbsp;
+          Yellow items highlight issues that deserve your attention,
+          but won't result in a loss of marks.&nbsp;  Grey items
+          indicate tests that were not performed (most likely due to
+          some red items above them).
+        </p>
+        [%- FOREACH result IN testResults %]
+          [%- result -%]
+        [%- END %]
+      </div>
+    </div>
+  [%- END %]
+</div>
+
+</body>
+</html>

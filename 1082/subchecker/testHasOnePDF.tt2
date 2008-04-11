@@ -1,0 +1,21 @@
+[%- IF pdfList.size > 1 %]
+  <p>
+    Your submission contains multiple PDF files:
+  </p>
+  <ol>
+    [%- FOREACH file IN pdfList %]
+      <li><tt>[% file | html_entity %]</tt></li>
+    [%- END %]
+  </ol>
+  <p>
+    You should combine these into a single PDF file.&nbsp;  This can be
+    done using
+    <a target="_blank" href="http://pdfforge.org/products/pdfcreator">
+    PDFCreator</a>.
+  </p>
+[%- ELSE %]
+  <p>
+    Your submission contains no PDF file.&nbsp;  Your working must be
+    submitted in PDF format.
+  </p>
+[%- END %]

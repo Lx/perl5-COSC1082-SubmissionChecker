@@ -1,0 +1,19 @@
+[%- IF lstList.size > 1 %]
+  <p>
+    Your submission contains multiple LST files:
+  </p>
+  <ol>
+    [%- FOREACH file IN lstList %]
+      <li><tt>[% file | html_entity %]</tt></li>
+    [%- END %]
+  </ol>
+  <p>
+    Only one LST file should exist per ASM file, and you should only be
+    submitting one ASM file.
+  </p>
+[%- ELSE %]
+  <p>
+    Your submission contains no LST file.&nbsp;  If you have an ASM
+    file, you should also have an LST file.
+  </p>
+[%- END %]

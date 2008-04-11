@@ -1,0 +1,73 @@
+#!/usr/local/bin/perl -T
+# DateTime isn't taint-safe (I think)
+
+use strict;
+use warnings;
+
+BEGIN {
+    use CGI::Carp qw(fatalsToBrowser);
+    my $u = umask 077;
+    die "Cannot open error log for appending: $!"
+        unless open(ERRLOG, '>>', '/home/a/apeters/1082/subchecker/errors.txt');
+    umask $u;
+    CGI::Carp::carpout(\*ERRLOG);
+    CGI::Carp::set_message(
+        'This error has been logged and will be investigated shortly.'
+    );
+}
+
+use lib '/home/a/apeters/1082/lib';
+
+use CGI qw();
+use COSC1082::Submission qw();
+use COSC1082::WebChecker::FormParams qw(
+    PARAM_SUBMISSION
+    PARAM_TICKBOX
+);
+use COSC1082::WebChecker::Request qw();
+use COSC1082::WebChecker::Tests qw();
+use Template qw();
+
+$ENV{'PATH'} = '';
+
+# =====================================================================
+
+my $request     = COSC1082::WebChecker::Request->instance;
+my $template    = Template->new( INCLUDE_PATH => '/home/a/apeters/1082/subchecker' );
+
+my @formErrors;
+my @testResults;
+if ($request->isFormSubmitted) {
+    my $submission = $request->getSubmission;
+    if (not $submission) {
+        push @formErrors, 'You have not selected a file for checking.';
+    }
+    if (not $request->isBoxTicked) {
+        push @formErrors,
+            'You must tick the box to confirm your understanding.';
+    }
+
+    if (not @formErrors) {
+        warn 'File submitted: ', $request->getSubmittedFilename, "\n";
+        my @testTypes = COSC1082::WebChecker::Tests->getAllTestTypes;
+        for my $testClass (@testTypes) {
+            my $test = $testClass->new($submission, $template);
+            $test->run;
+            push @testResults, $test->getHTMLOutput;
+        }
+    }
+}
+
+my $pageData;
+die($template->error->as_string) unless $template->process(
+    'page.tt2',
+    {
+        formErrors              => \@formErrors,
+        submissionFieldName     => PARAM_SUBMISSION,
+        tickBoxName             => PARAM_TICKBOX,
+        tickBoxIsTicked         => $request->isBoxTicked,
+        testResults             => \@testResults,
+    },
+    \$pageData
+);
+print CGI->new->header( -charset => 'utf-8' ), $pageData;

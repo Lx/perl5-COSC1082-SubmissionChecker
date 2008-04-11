@@ -1,0 +1,14 @@
+<p>
+  Your submitted file does not seem to be a ZIP archive.&nbsp;  It
+  looks like
+  [%- IF fileType.search('^[AaEeIiOoUu]') -%]
+    an
+  [%- ELSE -%]
+    a
+  [%- END -%]
+  '[% fileType | html_entity %]' file.
+</p>
+<p>
+  You are required to submit a ZIP file, even if that ZIP file only
+  contains one file.
+</p>

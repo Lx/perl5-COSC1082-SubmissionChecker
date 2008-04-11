@@ -1,0 +1,15 @@
+<p>
+  Your ZIP archive contains unexpected files:
+</p>
+<ol>
+  [%- FOREACH file IN foreignList %]
+    <li><tt>[% file | html_entity %]</tt></li>
+  [%- END %]
+</ol>
+<p>
+  These files will probably be <em>deleted without inspection</em> by
+  your marker since we are expecting to find all of your markable work
+  within the PDF, ASM, LST and S files.&nbsp;  If any of these files
+  contains important information, you should move that information into
+  your PDF file.
+</p>

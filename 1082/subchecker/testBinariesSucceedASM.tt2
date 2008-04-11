@@ -1,0 +1,8 @@
+<p>
+  Your ASM file has been modified since your LST and/or S files were
+  created.&nbsp;  This means that your LST and S files may no longer
+  match your code.
+</p>
+<p>
+  You should build your LST and S files again.
+</p>

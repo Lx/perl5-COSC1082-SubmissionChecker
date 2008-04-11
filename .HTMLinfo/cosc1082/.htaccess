@@ -1,0 +1,12 @@
+# Prevent access to this file from the Web
+<Files .ht*>
+    Order Allow,Deny
+    Deny From All
+</Files>
+
+# Allow scripts within this directory and all subdirectories to be executed
+AddHandler cgi-script .pl .py .cgi
+Options +Includes +ExecCGI
+
+# Override the default index page/s
+DirectoryIndex index.pl index.cgi index.html

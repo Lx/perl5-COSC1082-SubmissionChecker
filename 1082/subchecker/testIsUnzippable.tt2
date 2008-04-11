@@ -1,0 +1,9 @@
+<p>
+  The following errors occurred while unzipping your ZIP archive:
+</p>
+<blockquote><pre>
+  [%- zipOutput | html_entity -%]
+</pre></blockquote>
+<p>
+  Your ZIP file should unzip without any errors.
+</p>
